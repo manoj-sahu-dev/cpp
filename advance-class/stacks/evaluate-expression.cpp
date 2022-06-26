@@ -13,6 +13,16 @@ using namespace std;
  */
 bool isOperand(string A);
 int evalRPN(vector<string> &A);
+void print(stack<int> &A)
+{
+    cout << "content of stack: ";
+    while (!A.empty())
+    {
+        cout << A.top() << " ";
+        A.pop();
+    }
+    cout << endl;
+}
 int main(int argc, char **argv)
 {
     system("clear");
@@ -31,17 +41,44 @@ bool isOperand(string A)
 
 int evalRPN(vector<string> &A)
 {
-    stack<string> temp;
+    stack<int> temp;
     int result = 0;
     for (int i = 0; i < A.size(); i++)
     {
         string s = A[i];
         if (isOperand(s))
         {
+            result = stoi(s);
+            temp.push(result);
         }
         else
         {
+            int second = temp.top();
+            temp.pop();
+            int first = temp.top();
+            temp.pop();
+
+            if (s == "+")
+            {
+                result = first + second;
+            }
+            else if (s == "-")
+            {
+                result = first - second;
+            }
+            else if (s == "*")
+            {
+                result = first * second;
+            }
+            else if (s == "/")
+            {
+                result = first / second;
+            }
+            cout << "first = " << first << ", second = " << second << ", operator: " << s << ", res: " << result << endl;
+
+            temp.push(result);
         }
     }
+    print(temp);
     return result;
 }
