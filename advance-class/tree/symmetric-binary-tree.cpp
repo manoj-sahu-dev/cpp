@@ -26,11 +26,11 @@ int main(int argc, char **argv)
 }
 bool same(TreeNode *A, TreeNode *B)
 {
-    if (A == NULL && B == NULL)
+    if (!A && !B)
         return true;
-    if (A != NULL && B != NULL)
-        return (A->val == B->val);
-    return false;
+    if (!A || !B)
+        return false;
+    return (A->val == B->val) && same(A->left, B->right) && same(A->right, B->left);
 }
 int isSymmetric(TreeNode *A)
 {
