@@ -28,8 +28,10 @@ bool same(TreeNode *A, TreeNode *B)
 {
     if (A == NULL && B == NULL)
         return false;
-    if (A != NULL && B != NULL)
-        return A->val == B->val;
+    if (A == NULL && B == NULL)
+        return false;
+    if ((A->val == B->val) && same(A->left, B->left) && same(A->right, B->right))
+        return true;
     return false;
 }
 int isSymmetric(TreeNode *A)
