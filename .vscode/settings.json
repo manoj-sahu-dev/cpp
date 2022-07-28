@@ -40,7 +40,15 @@
     "initializer_list": "cpp",
     "map": "cpp",
     "string": "cpp",
-    "string_view": "cpp"
+    "string_view": "cpp",
+    "__nullptr": "cpp",
+    "filesystem": "cpp",
+    "random": "cpp",
+    "regex": "cpp",
+    "scoped_allocator": "cpp",
+    "list": "cpp",
+    "queue": "cpp",
+    "compare": "cpp"
   },
   "C_Cpp.errorSquiggles": "Disabled",
   "files.exclude": {

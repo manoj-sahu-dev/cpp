@@ -13,7 +13,23 @@ int getFibonacci(int n);
 int firstRepeating(vector<int> &A);
 int minDistance(vector<int> A);
 long subarraySum(vector<int> &A);
-
+int Solution::solve(vector<int> &A, int B)
+{
+    int l = 0;
+    int ans = A.size();
+    int sum = 0;
+    for (int i = 0; i < A.size(); i++)
+    {
+        sum += A[i];
+        while (sum > B)
+        {
+            sum -= A[l];
+            l++;
+            ans = min(ans, i - l + 1);
+        }
+    }
+    return ans;
+}
 int main()
 {
     /*vector<int> A{1, 2, 2, 1}, B{2, 3, 1, 2};
