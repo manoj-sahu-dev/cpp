@@ -15,14 +15,26 @@ struct TreeNode
  * @brief Given a binary tree, check whether it is a mirror of itself (i.e., symmetric around its center).
  *
  * @param A
- * @return TreeNode*
+ * @return int
  */
-TreeNode *isSymmetric(TreeNode *A);
+int isSymmetric(TreeNode *A);
+bool same(TreeNode *A, TreeNode *B);
 int main(int argc, char **argv)
 {
     system("clear");
     return 0;
 }
-TreeNode *isSymmetric(TreeNode *A)
+bool same(TreeNode *A, TreeNode *B)
 {
+    if (A == NULL && B == NULL)
+        return false;
+    if (A != NULL && B != NULL)
+        return A->val == B->val;
+    return false;
+}
+int isSymmetric(TreeNode *A)
+{
+    if (A == NULL)
+        return false;
+    return same(A->left, A->right);
 }
