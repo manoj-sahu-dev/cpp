@@ -50,6 +50,17 @@ vector<int> spelling_checker(vector<string> &A, vector<string> &B);
  */
 vector<int> contact_finder(vector<int> &A, vector<string> &B);
 
+/**
+ * @brief Given two arrays of strings A of size N and B of size M.
+ * Return a binary string C where C[i] = '1' if B[i] can be found in dictionary A using exactly one modification in B[i], Else C[i] = '0'.
+ * NOTE: modification is defined as converting a character into another character.
+ *
+ * @param A
+ * @param B
+ * @return string
+ */
+string modified_search(vector<string> &A, vector<string> &B);
+bool is_present_with_one_modification(TrieNode *A, string word);
 void insertWords(TrieNode *root, vector<string> &A);
 void insertWord(TrieNode *A, string word);
 bool isPresent(TrieNode *A, string word);
@@ -88,12 +99,19 @@ int main(int argc, char **argv)
     vector<int> ans = spelling_checker(A, B);
     print(ans);*/
 
-    vector<int> A{0, 0, 1, 1};
+    /*vector<int> A{0, 0, 1, 1};
     vector<string> B{"hack", "hacker", "hac", "hak"};
     print(A);
     print(B);
     vector<int> ans = contact_finder(A, B);
-    print(ans);
+    print(ans);*/
+
+    vector<string> A{"data", "circle", "cricket"};
+    vector<string> B{"date", "circel", "crikket", "data", "circl"};
+    print(A);
+    print(B);
+    string result = modified_search(A, B);
+    cout << "result: " << result << endl;
     return 0;
 }
 void insertWord(TrieNode *A, string word)
@@ -213,4 +231,38 @@ vector<int> contact_finder(vector<int> &A, vector<string> &B)
         }
     }
     return ans;
+}
+bool is_present_with_one_modification(TrieNode *A, string word)
+{
+    TrieNode *current = A;
+    bool one_modified = false;
+    for (char ch : word)
+    {
+        if (current->children[ch] == NULL)
+        {
+            if (one_modified)
+            {
+                return false;
+            }
+            else
+            {
+                one_modified = true;
+            }
+        }
+        current = current->children[ch];
+    }
+    return current->isLeaf;
+}
+string modified_search(vector<string> &A, vector<string> &B)
+{
+    string result;
+    TrieNode *dictionary = new TrieNode();
+    insertWords(dictionary, A);
+
+    for (string word : B)
+    {
+        bool is_present = is_present_with_one_modification(dictionary, word);
+        result += is_present ? "1" : "0";
+    }
+    return result;
 }
