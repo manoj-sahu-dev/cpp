@@ -4,7 +4,9 @@
 using namespace std;
 
 /**
- * @brief Given an array of integers A. There is a sliding window of size B, moving from the very left of the array to the very right. You can only see the B numbers in the window. Each time the sliding window moves rightwards by one position. You have to find the maximum for each window.
+ * @brief Given an array of integers A. There is a sliding window of size B, moving from the very left of the array to the very right.
+ * You can only see the B numbers in the window. Each time the sliding window moves rightwards by one position.
+ * You have to find the maximum for each window.
  *
  * Return an array C, where C[i] is the maximum value in the array from A[i] to A[i+B-1].
  *
