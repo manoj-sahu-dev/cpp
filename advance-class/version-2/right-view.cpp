@@ -11,23 +11,20 @@ struct TreeNode
     TreeNode *right;
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
+
 /**
- * @brief Given a binary tree of integers. Return an array of integers representing the left view of the Binary tree.
- * Left view of a Binary Tree is a set of nodes visible when the tree is visited from Left side
- * NOTE: The value comes first in the array which have lower level.
+ * @brief Given a binary tree of integers denoted by root A. Return an array of integers representing the right view of the Binary tree.
+ * Right view of a Binary Tree is a set of nodes visible when the tree is visited from Right side.
  *
  * @param A
  * @return vector<int>
  */
 vector<int> solve(TreeNode *A);
 
-TreeNode *deserialize(vector<int> &A);
-
 int main(int argc, char **argv)
 {
     system("clear"); // clean terminal, not tested in windows
     vector<int> A{7, 1, 15, 2, -1, -1, -1, -1};
-    TreeNode *head = deserialize(A);
 
     return 0;
 }
@@ -54,32 +51,11 @@ vector<int> solve(TreeNode *A)
                 q.push(node->left);
             if (node->right)
                 q.push(node->right);
-            if (i == 0)
+            if (i == (size - 1))
             {
                 result.push_back(node->val);
             }
         }
     }
     return result;
-}
-
-TreeNode *deserialize(vector<int> &A)
-{
-    TreeNode *head = nullptr;
-    if (A.size() == 0)
-        return head;
-    queue<TreeNode *> q;
-    head = new TreeNode(A[0]);
-    q.push(head);
-
-    int size = A.size();
-    for (int i = 1; i < size; i++)
-    {
-        int val = A[i];
-        if (val != -1)
-        {
-            TreeNode *node = new TreeNode(val);
-        }
-    }
-    return head;
 }
