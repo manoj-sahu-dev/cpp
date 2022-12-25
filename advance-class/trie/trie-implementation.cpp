@@ -139,6 +139,7 @@ void insertWords(TrieNode *root, vector<string> &A)
         insertWord(root, A[i]);
     }
 }
+
 string get_prefix_string(TrieNode *A, string word)
 {
     TrieNode *current = A;
@@ -261,6 +262,9 @@ string modified_search(vector<string> &A, vector<string> &B)
 
     for (string word : B)
     {
+        cout << "is present: "
+             << "is_present" << endl;
+
         bool is_present = is_present_with_one_modification(dictionary, word);
         result += is_present ? "1" : "0";
     }

@@ -9,7 +9,7 @@ void print(vector<int> &A)
 
     cout << endl;
 }
-void print(vector<vector<int> > &A)
+void print(vector<vector<int>> &A)
 {
     int rows = A.size();
     int columns = A[0].size();
@@ -22,7 +22,7 @@ void print(vector<vector<int> > &A)
         cout << endl;
     }
 }
-void towerOfHanoiRec(int n, vector<vector<int> > &res, int first, int helper, int last)
+void towerOfHanoiRec(int n, vector<vector<int>> &res, int first, int helper, int last)
 {
     if (n == 0)
     {
@@ -37,9 +37,9 @@ void towerOfHanoiRec(int n, vector<vector<int> > &res, int first, int helper, in
     towerOfHanoiRec(n - 1, res, helper, first, last);
 }
 
-vector<vector<int> > Solution::towerOfHanoi(int A)
+vector<vector<int>> Solution::towerOfHanoi(int A)
 {
-    vector<vector<int> > res;
+    vector<vector<int>> res;
     towerOfHanoiRec(A, res, 1, 2, 3);
     return res;
 }
@@ -49,7 +49,7 @@ int findFloor(vector<int> &A, int target);
 int findFirstOccurence(vector<int> &A, int target);
 int findPeakElement(vector<int> &A, int target);
 int findTargetInRotatedVector(vector<int> &A, int target);
-vector<int> searchMatrix(vector<vector<int> > &A, int B);
+vector<int> searchMatrix(vector<vector<int>> &A, int B);
 int findOddElement(vector<int> &A);
 int sqrt(int A);
 int main(int argc, char **argv)
@@ -136,7 +136,7 @@ int findOddElement(vector<int> &A)
     return xo;
 }
 
-vector<int> searchMatrix(vector<vector<int> > &A, int B)
+vector<int> searchMatrix(vector<vector<int>> &A, int B)
 {
     int i = 0;
     int j = A[0].length - 1;
