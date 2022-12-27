@@ -12,12 +12,17 @@ private:
             return;
 
         // Mark current cell as visited
-        matrix[x][y] = 1;
+        matrix[x][y] = 2;
 
-        dfs(matrix, x + 1, y, r, c); // DOWN
-        dfs(matrix, x, y + 1, r, c); // RIGHT
-        dfs(matrix, x - 1, y, r, c); // TOP
-        dfs(matrix, x, y - 1, r, c); // LEFT
+        dfs(matrix, x + 1, y, r, c);
+        dfs(matrix, x, y + 1, r, c);
+        dfs(matrix, x - 1, y, r, c);
+        dfs(matrix, x, y - 1, r, c);
+
+        dfs(matrix, x - 1, y - 1, r, c);
+        dfs(matrix, x + 1, y + 1, r, c);
+        dfs(matrix, x - 1, y + 1, r, c);
+        dfs(matrix, x + 1, y - 1, r, c);
     }
     /**
      * @brief Given a matrix of integers A of size N x M consisting of 0 and 1. A group of connected 1's forms an island. From a cell (i, j) such that A[i][j] = 1 you can visit any cell that shares a corner with (i, j) and value in that cell is 1.
@@ -58,7 +63,6 @@ public:
             return 0;
         int cols = A[0].size();
 
-        // Iterate for all cells of the array
         int no_of_islands = 0;
         for (int i = 0; i < rows; ++i)
         {
