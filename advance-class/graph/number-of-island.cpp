@@ -6,8 +6,18 @@ using namespace std;
 class Solution
 {
 private:
-    void dfs(vector<vector<int>> &mat, int row, int col)
+    void dfs(vector<vector<int>> &matrix, int x, int y, int r, int c)
     {
+        if (x < 0 || x >= r || y < 0 || y >= c || matrix[x][y] != 1) // Boundary case for matrix
+            return;
+
+        // Mark current cell as visited
+        matrix[x][y] = 1;
+
+        dfs(matrix, x + 1, y, r, c); // DOWN
+        dfs(matrix, x, y + 1, r, c); // RIGHT
+        dfs(matrix, x - 1, y, r, c); // TOP
+        dfs(matrix, x, y - 1, r, c); // LEFT
     }
     /**
      * @brief Given a matrix of integers A of size N x M consisting of 0 and 1. A group of connected 1's forms an island. From a cell (i, j) such that A[i][j] = 1 you can visit any cell that shares a corner with (i, j) and value in that cell is 1.
@@ -43,20 +53,25 @@ public:
 
     int solve(vector<vector<int>> &A)
     {
-        int count = 0;
-        int n = A.size();
-        int m = A[0].size();
-        for (int i = 0; i < n; i++)
+        int rows = A.size();
+        if (rows == 0) // Empty grid boundary case
+            return 0;
+        int cols = A[0].size();
+
+        // Iterate for all cells of the array
+        int no_of_islands = 0;
+        for (int i = 0; i < rows; ++i)
         {
-            for (int j = 0; j < m; j++)
+            for (int j = 0; j < cols; ++j)
             {
                 if (A[i][j] == 1)
                 {
-                    dfs(A, i, j);
+                    dfs(A, i, j, rows, cols);
+                    no_of_islands += 1;
                 }
             }
         }
-        return count;
+        return no_of_islands;
     }
 };
 int main(int argc, const char **argv)
@@ -69,5 +84,7 @@ int main(int argc, const char **argv)
 
     Solution solution;
     solution.print(matrix);
+    int result = solution.solve(matrix);
+    cout << result << endl;
     return 0;
 }
