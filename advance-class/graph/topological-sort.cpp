@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include <iostream>
 #include <queue>
 #include <vector>
@@ -30,7 +31,7 @@ public:
         print(B);
         vector<int> res;
         vector<vector<int>> graph(A + 1);
-        vector<int> in_degree(A + 1, 0);
+        vector<int> in_degree(A + 1);
 
         int N = B.size();
 
@@ -42,52 +43,71 @@ public:
             graph[u].push_back(v);
             in_degree[v]++;
         }
+
         print(in_degree);
         print(graph);
-
-        queue<int> q;
+        priority_queue<int, vector<int>, greater<int>> pq;
 
         for (int i = 1; i <= A; i++)
         {
-            cout << i << " :  " << in_degree[i] << endl;
             if (in_degree[i] == 0)
             {
-                q.push(i);
+                pq.push(i);
             }
         }
 
-        while (!q.empty())
+        while (!pq.empty())
         {
-            int front = q.front();
-            res.push_back(front);
+            int front = pq.top();
+            pq.pop();
             cout << front << endl;
-            q.pop();
+            res.push_back(front);
+
             for (auto neighbor : graph[front])
             {
                 in_degree[neighbor]--;
-
                 if (in_degree[neighbor] == 0)
                 {
-                    q.push(neighbor);
+                    pq.push(neighbor);
                 }
             }
         }
 
         return res;
     }
+    void show_pq(priority_queue<int, vector<int>, greater<int>> gq)
+    {
+        while (!gq.empty())
+        {
+            cout << '\t' << gq.top();
+            gq.pop();
+        }
+        cout << '\n';
+    }
+    void test_min_heap(int size = 10)
+    {
+        priority_queue<int, vector<int>, greater<int>> q;
+        for (int i = 0; i < size; i++)
+        {
+            q.push(rand() % (size * 10));
+        }
+        show_pq(q);
+        show_pq(q);
+    }
 };
 
 int main(int argc, char **arg)
 {
     system("clear");
+    Solution solution;
+    solution.test_min_heap();
     // int A = 6;
     // vector<vector<int>> B{{6, 3}, {6, 1}, {5, 1}, {5, 2}, {3, 4}, {4, 2}};
     // int A = 4;
     // vector<vector<int>> B{{1, 2}, {2, 3}, {2, 4}, {3, 4}, {4, 1}};
     int A = 8;
     vector<vector<int>> B{{1, 4}, {1, 2}, {4, 2}, {4, 3}, {3, 2}, {5, 2}, {3, 5}, {8, 2}, {8, 6}};
-    Solution solution;
-    vector<int> result = solution.solve(A, B);
-    solution.print(result);
+    vector<int> res = solution.solve(A, B);
+    solution.print(res);
     return 0;
 }

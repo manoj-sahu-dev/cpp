@@ -13,7 +13,10 @@
     "__split_buffer": "cpp",
     "deque": "cpp",
     "list": "cpp",
-    "string": "cpp"
+    "string": "cpp",
+    "queue": "cpp",
+    "__config": "cpp",
+    "stack": "cpp"
   },
   "task.allowAutomaticTasks": "on"
 }
