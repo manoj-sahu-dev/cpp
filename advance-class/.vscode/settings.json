@@ -16,7 +16,11 @@
     "string": "cpp",
     "queue": "cpp",
     "__config": "cpp",
-    "stack": "cpp"
+    "stack": "cpp",
+    "__bit_reference": "cpp",
+    "__mutex_base": "cpp",
+    "tuple": "cpp",
+    "variant": "cpp"
   },
   "task.allowAutomaticTasks": "on"
 }
