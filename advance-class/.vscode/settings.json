@@ -20,7 +20,8 @@
     "__bit_reference": "cpp",
     "__mutex_base": "cpp",
     "tuple": "cpp",
-    "variant": "cpp"
+    "variant": "cpp",
+    "__node_handle": "cpp"
   },
   "task.allowAutomaticTasks": "on"
 }

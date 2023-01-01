@@ -25,13 +25,13 @@ public:
         long long cost = 0;
         while (pq.size() > 1)
         {
-            int first = pq.top();
+            long long first = pq.top();
             pq.pop();
-            int second = 0;
+            long long second = 0;
             second = pq.top();
             pq.pop();
 
-            int sum = first + second;
+            long long sum = first + second;
             cost += sum;
             cout << "first: " << first << ", second: " << second << ", cost: " << cost << ", size = " << pq.size() << endl;
             pq.push(sum);
